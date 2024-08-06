@@ -1,0 +1,70 @@
+#!/bin/bash
+
+set -e
+
+PACKGEPATH=$(dirname "$0")
+
+DOCKERFILES_DIR="$PACKGEPATH/../dockerfiles"
+
+source "$PACKGEPATH/../commands/wordpress.sh"
+source "$PACKGEPATH/../utils/header.sh"
+
+# Function to display help
+function display_help() {
+    echo "Usage: $0 [option] [directory]"
+    echo
+    echo "Options:"
+    echo "  -h, --help          Display this help message"
+    echo "  -d, --download      Download WordPress and organize files in the specified directory"
+    echo "  -s, --sage          Download WordPress Theme sage"
+    echo "  -b, --bedrock       Download the advanced WordPress Bedrock boilerplate"
+    echo "  -v, --version       Display the version of this script"
+    echo
+    echo "Example:"
+    echo "  $0 [option] /path/to/directory"
+}
+
+# Function to display version
+function display_version() {
+    echo "Custom CLI Version 1.1"
+}
+
+# Main script logic
+if [ "$#" -eq 0 ]; then
+    display_help
+    exit 1
+fi
+
+while [[ "$1" != "" ]]; do
+    case $1 in
+    -h | --help)
+        display_help
+        exit
+        ;;
+    -d | --download)
+        shift
+        download_wordpress $1
+        exit
+        ;;
+    -b | --bedrock)
+        shift
+        download_bedrock $1
+        exit
+        ;;
+    -s | --sage)
+        shift
+        download_sage $1
+        exit
+        ;;
+    -v | --version)
+        display_version
+        exit
+        ;;
+    *)
+        echo "Invalid option: $1"
+        display_help
+        exit 1
+        ;;
+    esac
+    shift
+done
