@@ -1,0 +1,29 @@
+{
+  "name": "wordpress-cli",
+  "version": "1.0.0",
+  "cliName": "ma",
+  "description": "A simple cli to prepare wordpress project in just one command",
+  "main": "bin/ma",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mahmoud-alawad/wordpress-cli.git"
+  },
+  "keywords": [
+    "bash",
+    "wordpress",
+    "sage",
+    "bedrock"
+  ],
+  "author": "Mahmoud Alawad <awad25.ma@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahmoud-alawad/wordpress-cli/issues"
+  },
+  "homepage": "https://github.com/mahmoud-alawad/wordpress-cli#readme"
+}
