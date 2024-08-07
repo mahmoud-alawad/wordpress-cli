@@ -4,7 +4,9 @@ set -e
 
 PACKGEPATH=$(dirname "$0")
 
-DOCKERFILES_DIR="$PACKGEPATH/../dockerfiles"
+DOCKERFILESDIR="$PACKGEPATH/../dockerfiles"
+PACKAGEJSON="$PACKGEPATH/../package.json"
+
 
 source "$PACKGEPATH/../commands/wordpress.sh"
 source "$PACKGEPATH/../utils/header.sh"
