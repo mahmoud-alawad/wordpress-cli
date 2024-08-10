@@ -7,6 +7,7 @@ set -e
 REPO_URL="https://github.com/mahmoud-alawad/wordpress-cli"
 INSTALL_DIR="$HOME/.ma/cli"
 CLI_NAME="ma"
+VERSION="1.0.0"
 TEMP_DIR=$(mktemp -d)
 
 cleanup() {
@@ -16,7 +17,7 @@ cleanup() {
 trap cleanup EXIT
 
 echo "Downloading the latest release of $CLI_NAME..."
-curl -sL "$REPO_URL/releases/latest/download/$CLI_NAME.tar.gz" -o "$TEMP_DIR/$CLI_NAME.tar.gz"
+curl -sL "$REPO_URL/releases/latest/download/$VERSION.tar.gz" -o "$TEMP_DIR/$VERSION.tar.gz"
 
 if [[ $? -ne 0 ]]; then
     echo "Error downloading the release tarball."
@@ -24,7 +25,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "Extracting files..."
-tar -xzf "$TEMP_DIR/$CLI_NAME.tar.gz" -C "$TEMP_DIR"
+tar -xzf "$TEMP_DIR/$VERSION.tar.gz" -C "$TEMP_DIR"
 
 if [[ $? -ne 0 ]]; then
     echo "Error extracting the tarball."
@@ -34,7 +35,7 @@ fi
 # Move the CLI tool to the installation directory
 echo "Installing $CLI_NAME to $INSTALL_DIR..."
 
-mv "$TEMP_DIR/$CLI_NAME" "$INSTALL_DIR/"
+mv "$TEMP_DIR/$VERSION" "$INSTALL_DIR/"
 
 if [[ $? -ne 0 ]]; then
     echo "Error moving the CLI tool to $INSTALL_DIR."
@@ -43,7 +44,7 @@ fi
 
 # Make the CLI tool executable
 echo "Setting executable permissions..."
-chmod +x "$INSTALL_DIR/$CLI_NAME"
+chmod +x "$INSTALL_DIR/$VERSION"
 
 if [[ $? -ne 0 ]]; then
     echo "Error setting executable permissions."
