@@ -25,17 +25,26 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "Extracting files..."
-unzip "$TEMP_DIR/$VERSION.zip" -C "$TEMP_DIR"
+unzip "$TEMP_DIR/$VERSION.zip" -d "$TEMP_DIR"
 
 if [[ $? -ne 0 ]]; then
-    echo "Error extracting the tarball."
+    echo "Error extracting the zip file."
+    exit 1
+fi
+
+# Assume the extracted folder is named "wordpress-cli-1.0.0"
+EXTRACTED_DIR="$TEMP_DIR/wordpress-cli-$VERSION"
+
+if [[ ! -d "$EXTRACTED_DIR" ]]; then
+    echo "Extracted directory not found."
     exit 1
 fi
 
 # Move the CLI tool to the installation directory
 echo "Installing $CLI_NAME to $INSTALL_DIR..."
-
-mv "$TEMP_DIR/$VERSION" "$INSTALL_DIR/"
+mkdir "$INSTALL_DIR"
+sleep 2s
+mv "$EXTRACTED_DIR"/* "$INSTALL_DIR/"
 
 if [[ $? -ne 0 ]]; then
     echo "Error moving the CLI tool to $INSTALL_DIR."
@@ -44,7 +53,7 @@ fi
 
 # Make the CLI tool executable
 echo "Setting executable permissions..."
-chmod +x "$INSTALL_DIR/$VERSION"
+chmod +x "$INSTALL_DIR/$CLI_NAME"
 
 if [[ $? -ne 0 ]]; then
     echo "Error setting executable permissions."
