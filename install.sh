@@ -17,7 +17,7 @@ cleanup() {
 trap cleanup EXIT
 
 echo "Downloading the latest release of $CLI_NAME..."
-curl -sL "$REPO_URL/releases/latest/download/$VERSION.tar.gz" -o "$TEMP_DIR/$VERSION.tar.gz"
+curl -sL "$REPO_URL/archive/refs/tags/$VERSION.zip" -o "$TEMP_DIR/$VERSION.zip"
 
 if [[ $? -ne 0 ]]; then
     echo "Error downloading the release tarball."
@@ -25,7 +25,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "Extracting files..."
-tar -xzf "$TEMP_DIR/$VERSION.tar.gz" -C "$TEMP_DIR"
+unzip "$TEMP_DIR/$VERSION.zip" -C "$TEMP_DIR"
 
 if [[ $? -ne 0 ]]; then
     echo "Error extracting the tarball."
