@@ -42,8 +42,7 @@ fi
 
 # Move the CLI tool to the installation directory
 echo "Installing $CLI_NAME to $INSTALL_DIR..."
-mkdir "$INSTALL_DIR"
-sleep 2s
+mkdir -p "$INSTALL_DIR"  # Create the installation directory, including parents if needed
 mv "$EXTRACTED_DIR"/* "$INSTALL_DIR/"
 
 if [[ $? -ne 0 ]]; then
