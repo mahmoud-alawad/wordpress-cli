@@ -42,6 +42,7 @@ fi
 
 # Move the CLI tool to the installation directory
 echo "Installing $CLI_NAME to $INSTALL_DIR..."
+rm -rf "$INSTALL_DIR"
 mkdir -p "$INSTALL_DIR"  # Create the installation directory, including parents if needed
 mv "$EXTRACTED_DIR"/* "$INSTALL_DIR/"
 
