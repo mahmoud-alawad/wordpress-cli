@@ -53,25 +53,12 @@ fi
 
 # Make the CLI tool executable
 echo "Setting executable permissions..."
+ls -l "$HOME/.ma/cli/bin/ma"
+sleep 1s
 chmod +x "$INSTALL_DIR/bin/$CLI_NAME"
+export PATH="$HOME/.ma/cli/bin:$PATH"
 
 if [[ $? -ne 0 ]]; then
     echo "Error setting executable permissions."
     exit 1
 fi
-
-echo "$CLI_NAME installed successfully!"
-
-alias_command="alias ma=$INSTALL_DIR/$CLI_NAME"
-
-# Check if alias already exists in .bashrc
-if ! grep -Fxq "$alias_command" ~/.bashrc
-then
-    # Append the alias to .bashrc
-    echo "$alias_command" >> ~/.bashrc
-    echo "Alias added to ~/.bashrc"
-else
-    echo "Alias already exists in ~/.bashrc"
-fi
-
-source ~/.bashrc
