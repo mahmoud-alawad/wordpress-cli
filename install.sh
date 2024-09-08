@@ -60,3 +60,17 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "$CLI_NAME installed successfully!"
+
+alias_command="alias ma=$INSTALL_DIR/$CLI_NAME"
+
+# Check if alias already exists in .bashrc
+if ! grep -Fxq "$alias_command" ~/.bashrc
+then
+    # Append the alias to .bashrc
+    echo "$alias_command" >> ~/.bashrc
+    echo "Alias added to ~/.bashrc"
+else
+    echo "Alias already exists in ~/.bashrc"
+fi
+
+source ~/.bashrc
