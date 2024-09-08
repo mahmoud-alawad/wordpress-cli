@@ -53,7 +53,7 @@ fi
 
 # Make the CLI tool executable
 echo "Setting executable permissions..."
-chmod +x "$INSTALL_DIR/$CLI_NAME"
+chmod +x "$INSTALL_DIR/bin/$CLI_NAME"
 
 if [[ $? -ne 0 ]]; then
     echo "Error setting executable permissions."
